@@ -1,0 +1,9 @@
+"Primary key" >>> _________
+'Foreign Key' >>> _ _ _ _ _ 
+
+IRAKASLEAK ("M_NAN", Esperientzia, Izena, M_Telf, 'K_Kodea')
+ESKOLA     ("K_Kodea", Deskrib, Egun_Ordua)
+GELAK      ("Gela_zb", Mota, Kokapena, K_Kodea')
+APARATUAK  ("Kodea", Egoera, Deskrip)
+BASKIDEA   ("Bazkide_zen", Izena, Telf, Lanbidea)
+SQUASH     ("Pista_zb", Egoera, Kokapena) 

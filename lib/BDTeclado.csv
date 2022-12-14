@@ -1,0 +1,4 @@
+Codigo,Marca,Precio,Descuento,Prime,Color,Teclas,Conector
+t001,Fender,650,20,true,Pino,6,USB
+t002,Yamaha,400,20,false,Cedro,6,MIDI
+t003,Ibanez,800,25,false,Balza,7,MIDI
