@@ -8,10 +8,6 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) throws IOException{
-        String pathWriteTeclado = "lib/BBDD_Teclados.csv";
-        String pathTemp = "lib/BBDD_Temp.csv";
-        Teclado teclado = new Teclado();
-        List<Teclado> arrTeclados = new ArrayList<Teclado>();
         
         Scanner in = new Scanner(System.in);
         boolean salir = false;
@@ -25,16 +21,15 @@ public class App {
                 switch (key) {
                     case 1:
                         Menu.limpiar();
-                        salir = true;
                         MenuTeclado.MenuTeclado();
-                        // ConsolaTeclado.addTeclados(pathWriteTeclado);
+                        salir = true;
                         //ConsolaTeclado.proSer(pathWriteTeclado, pathTemp);
                         break;
                     case 2:
                         //Menu.limpiar();
                         //ConsolaTeclado.buscarTeclados(pathWriteTeclado);
-
-                        // ConsolaTeclado.prueba(pathWriteTeclado, arrTeclados);
+                        System.out.print("Solo esta disponible los productos de TECLADOS\n");
+                        //salir = true;
                         break;
                     case 3:
                         salir = true;

@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-
-// import javax.print.DocFlavor.STRING;
 
 public abstract class Producto {
 
@@ -15,10 +12,8 @@ public abstract class Producto {
     private double precio;
     private double dcto;
     private boolean prime;
-    //private double preciotemp;
-    // private ArrayList<Teclado> teclados;
-
-    
+    private double pvp;
+  
 
     public Producto(){
     }
@@ -86,9 +81,9 @@ public abstract class Producto {
 
     public double getPrecioVenta(){
         if(this.prime==true){
-            return this.precio = precio - Math.round(precio*dcto)/100;
+            return this.pvp = precio - Math.round(precio*dcto)/100;
         }else{
-            return this.precio = precio - Math.round(precio*dcto)/100 + 15;
+            return this.pvp = precio - Math.round(precio*dcto)/100 + 15;
     }
 
     }
@@ -102,24 +97,5 @@ public abstract class Producto {
         }else{
         return e;}
     }
-
-
-
-    // public int cantTeclados(){
-    //     return teclados.size();
-    // }
-    
-    // public Teclado buscarTeclado(String id){
-    //     Teclado tecladoEncontrado = null;
-    //     int i= 0;
-    //     while (i < cantTeclados() && !this.teclados.get(i).getId().equalsIgnoreCase(id)) {
-    //         i++;
-    //     }
-    //     if (i < cantTeclados()) {
-    //         tecladoEncontrado = this.teclados.get(i);
-    //     }
-    //     return tecladoEncontrado;
-    // }
-    
 
 }

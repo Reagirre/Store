@@ -5,51 +5,50 @@ import java.util.Scanner;
 public class MenuTeclado {
 
     public static void MenuTeclado() throws IOException{
-        String pathWriteTeclado = "lib/BBDD_Teclados.csv";
-        String pathReadTeclado = "lib/BDTeclado.csv";
+        String pathTeclado = "lib/BBDD_Teclados.csv";
+        //String pathReadTeclado = "lib/BDTeclado.csv";
         boolean salir = false;
         Scanner in = new Scanner(System.in);
 
         while(!salir){
             try {
-                ConsolaTeclado.MenuOpciones();
+                ConsolaTeclado.menuOpciones();
                 int key = in.nextInt();
-//"Añadir","Buscar","Cambiar (No disponible)","Leer CSV","Borrar Linea (No Funciona)","Eliminar Todo","Ver objetos añadidos","AÑADIR ObjetoCSV","Volver"};
-
+                // "Añadir","Buscar por ID","Buscar Elemento en CSV","Cambiar","Borrar","Leer Info CSV","Eliminar Todo","Volver"};
                 switch (key) {
                     case 1:
-                        ConsolaTeclado.addTeclados(pathWriteTeclado);
+                        ConsolaTeclado.addTeclados(pathTeclado);
                         break;
                     case 2:
-                        ConsolaTeclado.SearchTeclado(pathWriteTeclado);
+                        ConsolaTeclado.buscaPorID(pathTeclado);
                         break;
                     case 3:
-                        ConsolaTeclado.proSer(pathWriteTeclado);
+                        ConsolaTeclado.buscaItemCSV(pathTeclado);
                         break;
                     case 4:
-                        ConsolaTeclado.LeerCSV(pathWriteTeclado);
+                        ConsolaTeclado.funcionActualizar(pathTeclado);
                         break;
                     case 5:
-                        ConsolaTeclado.imprimeUnaLinea(pathWriteTeclado);
+                        ConsolaTeclado.borraRegistro(pathTeclado);
                         break;
                     case 6:
-                        ConsolaTeclado.borrarCSV(pathWriteTeclado);
+                        ConsolaTeclado.leerCSV(pathTeclado);
                         break;
                     case 7:
-                        
+                        ConsolaTeclado.borrarCSV(pathTeclado);
                         break;
                     case 8:
-                        ConsolaTeclado.crearObjetos(pathWriteTeclado);
-                        break;
-                    case 9:
                         Menu.limpiar();
                         App.main(null);
+                        salir = true;
                         break;               
                     default:
-                        System.out.println("Introduce una opcion valida\n");
+                        Menu.limpiar();
+                        System.out.println("Introduce una opcion valida");
                 }
             
             } catch (InputMismatchException e) {
+                Menu.limpiar();
                 System.out.println("Debes insertar un número.\n");
                 in.next();
             }
