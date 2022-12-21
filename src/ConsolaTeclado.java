@@ -20,7 +20,7 @@ public class ConsolaTeclado{
 
 
     public static void menuOpciones() {
-        String[] opciones = {"Añadir","Buscar por ID","Buscar Elemento en CSV","Cambiar","Borrar","Leer Info CSV","Eliminar Todo","Volver"};
+        String[] opciones = {"Añadir Producto","Buscar por ID","Buscar Elemento en CSV","Cambiar Info","Borrar Producto","Leer Info CSV","Eliminar Todo","Volver"};
             System.out.print("\n***Menu de Opciones***\n");
             for (int i =0;i<opciones.length;i++){
                 System.out.printf("%d - %s:\n",i+1,opciones[i]);
@@ -220,7 +220,8 @@ public class ConsolaTeclado{
                 String[] parts = fila.split(",");
                 int totalParts = parts.length;
                 for(int i=0;i<totalParts;i++){
-                    if(dato.compareTo(parts[i]) == 0){
+                    // if(dato.compareTo(parts[i]) == 0){
+                    if(dato.compareToIgnoreCase(parts[i]) == 0){
                         itemFinds++;
                         System.out.printf("\nItem encontrado en la Fila: %d - Posicion [%d]\nObjeto >> %s",numFila,i,fila);
                         busqueda=true;
@@ -623,7 +624,9 @@ public class ConsolaTeclado{
                 tecladoFind = (Teclado) arrTeclados.get(i);
             }
             //tecladoFind.mostrarInfo();
-            System.out.println(tecladoFind.toStringDatos());
+            System.out.println("\nEUSKERA\n"+tecladoFind.toStringAbstract("EUS"));
+            System.out.println("\nENGLISH\n"+tecladoFind.toStringAbstract("EN"));
+            System.out.println("\nCASTELLANO\n"+tecladoFind.toStringAbstract("ES"));
 
         } catch (Exception e) {
             System.out.printf("\nEste codigo no existe....\n");

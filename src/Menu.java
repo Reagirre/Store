@@ -11,7 +11,7 @@ public class Menu {
     }
     
     public static void MenuOpciones() {
-        String[] opciones = {"Añadir","Buscar","Cambiar","Leer CSV","Eliminar Todo"};
+        String[] opciones = {"Añadir Producto","Buscar por ID","Buscar Elemento en CSV","Cambiar Info","Borrar Producto","Leer Info CSV","Eliminar Todo","Volver"};
         //String[] opciones = {"Añadir","Buscar","Cambiar","Eliminar"};
         System.out.print("\n***Menu de Opciones***\n");
             for (int i =0;i<opciones.length;i++){

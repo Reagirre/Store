@@ -48,12 +48,41 @@ public class Teclado extends Producto{
 
     @Override
     public String toString() {
+        // super.mostrarAlgo();
+        // System.out.print("algo del hijo");
          return getId()+ "," + getMarca()+ "," + getPrecio()+ "," + getDcto()+ "," + isPrime()+ "," + getColor()+ "," + getTeclas()+ "," + getConector() + "," + getEnvio() + "," + getPrecioVenta();
         }
 
     public String toStringDatos() {
          return "Id: "+getId()+ "\n" + "Marca: "+getMarca()+ "\n" + "Precio: "+getPrecio()+ "\n" + "Descuento: "+getDcto()+ "\n" + "Prime: "+isPrime()+ "\n" + "Color: "+getColor()+ "\n" + "Teclas: "+getTeclas()+ "\n" + "Conector: "+getConector() + "\n" + "Envio: "+getEnvio() + "\n" + "PVP: "+getPrecioVenta();
-        }    
+        }
+
+    @Override
+    public String toStringAbstract(String idioma ) {
+        if (idioma.equals("EUS"))
+        {
+            return "Id: "+getId()+ "\n" + "Kodea: "+getMarca()+ "\n" + "Prezioa: "+getPrecio()+"€"+ "\n" + "Deskontua: "+getDcto()+"%"+ "\n" + "Prime: "+isPrime()+ "\n" + "Kolorea: "+color+ "\n" + "Teklak: "+teclas+ "\n" + "Konektorea: "+conector + "\n" + "Bidalketa: "+getEnvio() + "\n" + "Salmenta-prezioa: "+getPrecioVenta()+"€";
+        }
+        else if (idioma.equals("EN"))
+        {
+            return "Id: "+getId()+ "\n" + "Brand: "+getMarca()+ "\n" + "Price: "+getPrecio()+"€"+ "\n" + "Discount: "+getDcto()+"%"+ "\n" + "Prime: "+isPrime()+ "\n" + "Color: "+color+ "\n" + "Keys: "+teclas+ "\n" + "Conection: "+conector + "\n" + "Delivery: "+getEnvio() + "\n" + "Sale Price: "+getPrecioVenta()+"€";
+        }
+        else
+        {
+            return "Id: "+getId()+ "\n" + "Marca: "+getMarca()+ "\n" + "Precio: "+getPrecio()+"€"+ "\n" + "Descuento: "+getDcto()+"%"+ "\n" + "Prime: "+isPrime()+ "\n" + "Color: "+color+ "\n" + "Teclas: "+teclas+ "\n" + "Conector: "+conector + "\n" + "Envio: "+getEnvio() + "\n" + "PVP: "+getPrecioVenta()+"€";
+        }
+        
+    }
+
+    @Override
+    public void toStringAbstract() {
+        // TODO Auto-generated method stub
+        // System.out.println("Código: " + kodea);
+        // System.out.println("Fabricante: " + ekoizlea);
+        // System.out.println("Modelo: " + modeloa);
+        
+    }
+    
 
  
 }

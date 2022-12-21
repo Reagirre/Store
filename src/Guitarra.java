@@ -43,4 +43,16 @@ public class Guitarra extends Producto{
         System.out.printf("\nCodigo: %s\nMarca: %s\nPrecio: %.2f\nDescuento: %.2f\nPrime: %b\nMaterial: %s\nCuerdas: %d\nOrientacion: %s\nPVP: %.2f\n"
         ,getId(),getMarca(),getPrecio(),getDcto(),isPrime(),getMaterial(),getCuerdas(),getOrientacion(),getPrecioVenta());
     }
+
+    @Override
+    public void toStringAbstract() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public String toStringAbstract(String idioma) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

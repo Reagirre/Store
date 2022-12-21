@@ -12,7 +12,7 @@ public abstract class Producto {
     private double precio;
     private double dcto;
     private boolean prime;
-    private double pvp;
+    // private double pvp;
   
 
     public Producto(){
@@ -81,9 +81,11 @@ public abstract class Producto {
 
     public double getPrecioVenta(){
         if(this.prime==true){
-            return this.pvp = precio - Math.round(precio*dcto)/100;
+            // return this.pvp = precio - Math.round(precio*dcto)/100;
+            return precio - Math.round(precio*dcto)/100;
         }else{
-            return this.pvp = precio - Math.round(precio*dcto)/100 + 15;
+            // return this.pvp = precio - Math.round(precio*dcto)/100 + 15;
+            return precio - Math.round(precio*dcto)/100 + 15;
     }
 
     }
@@ -97,5 +99,8 @@ public abstract class Producto {
         }else{
         return e;}
     }
+
+    public abstract void toStringAbstract();
+    public abstract String toStringAbstract(String idioma);
 
 }
