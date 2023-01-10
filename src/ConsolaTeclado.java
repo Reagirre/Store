@@ -141,6 +141,7 @@ public class ConsolaTeclado{
             
         } catch (Exception e) {
             System.out.printf("Error en el dato ingresado! Intentelo nuevamente...\n");
+            // System.err.printf("Error en el dato ingresado! Intentelo nuevamente...\n");
             addTeclados(pathTeclado);
             // TODO: handle exception
         }
