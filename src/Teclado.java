@@ -52,7 +52,7 @@ public class Teclado extends Producto{
         // System.out.print("algo del hijo");
          return getId()+ "," + getMarca()+ "," + getPrecio()+ "," + getDcto()+ "," + isPrime()+ "," + getColor()+ "," + getTeclas()+ "," + getConector() + "," + getEnvio() + "," + getPrecioVenta();
         }
-
+    @Override
     public String toStringDatos() {
          return "Id: "+getId()+ "\n" + "Marca: "+getMarca()+ "\n" + "Precio: "+getPrecio()+ "\n" + "Descuento: "+getDcto()+ "\n" + "Prime: "+isPrime()+ "\n" + "Color: "+getColor()+ "\n" + "Teclas: "+getTeclas()+ "\n" + "Conector: "+getConector() + "\n" + "Envio: "+getEnvio() + "\n" + "PVP: "+getPrecioVenta();
         }

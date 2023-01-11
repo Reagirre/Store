@@ -100,6 +100,8 @@ public abstract class Producto {
         return e;}
     }
 
+    public abstract String toString();
+    public abstract String toStringDatos();
     public abstract void toStringAbstract();
     public abstract String toStringAbstract(String idioma);
 

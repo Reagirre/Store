@@ -55,4 +55,16 @@ public class Guitarra extends Producto{
         // TODO Auto-generated method stub
         return null;
     }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String toStringDatos() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
