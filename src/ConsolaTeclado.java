@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EmptyStackException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ public class ConsolaTeclado{
 
 
     public static void menuOpciones() {
-        String[] opciones = {"Añadir Producto","Buscar por ID","Buscar Elemento en CSV","Cambiar Info","Borrar Producto","Leer Info CSV","Eliminar Todo","Volver"};
+        String[] opciones = {"Añadir Producto","Buscar por codigo ID","Buscar item en archivo.CSV","Cambiar Información","Borrar Producto","Leer informacion archivo.CSV","Eliminar Todo (No disponible)","Volver"};
             System.out.print("\n***Menu de Opciones***\n");
             for (int i =0;i<opciones.length;i++){
                 System.out.printf("%d - %s:\n",i+1,opciones[i]);
@@ -59,51 +60,73 @@ public class ConsolaTeclado{
     
 }
 
+    static void isVacio(String input){
+        if(input.isEmpty()||input.equalsIgnoreCase("t")||input.equalsIgnoreCase("g"))
+        {
+        System.out.println("No ha ingresado ningun valor");
+        throw new EmptyStackException();
+        }
+    }
+
+    static void isVacioInt(String input){
+        if(input.isEmpty())
+        {
+        System.out.println("No ha ingresado ningun valor");
+        throw new EmptyStackException();
+        }
+    }
+
+
     public static void addTeclados(String pathTeclado) throws IOException{
 
         try {
-            String id, marca, color, conector, loop;
-            double precio, dcto;
-            int teclas;
-            boolean prime;
-        
+            String key, loop;
+            boolean keyBoolean = false;
+
             List<Teclado> arrTeclado = new ArrayList<Teclado>();
             Teclado teclado  = new Teclado();
             Scanner in = new Scanner(System.in);
             String[] opc = {"Numero de id","Marca","Precio","Descuento","Prime","Color","Teclas","Conector"};
             
-        
-            System.out.printf("Ingrese %s: t", opc[0]);
-            id = "t"+in.next();
-            teclado.setId(id);	
+            System.out.printf("Ingrese %s [t=codigo de teclado]: t", opc[0]);
+            key = "t"+in.nextLine();
+            isVacio(key);
+            teclado.setId(key);	
         
             System.out.printf("Ingrese %s: ", opc[1]);
-            marca = in.next();
-            teclado.setMarca(marca);
+            key = in.nextLine();
+            isVacio(key);
+            teclado.setMarca(key);
         
             System.out.printf("Ingrese %s: ", opc[2]);
-            precio = in.nextDouble();
-            teclado.setPrecio(precio);
+            key = in.nextLine();
+            teclado.setPrecio(Double.parseDouble(key));
         
             System.out.printf("Ingrese %s: ", opc[3]);
-            dcto = in.nextDouble();
-            teclado.setDcto(dcto);
+            key = in.nextLine();
+            teclado.setDcto(Double.parseDouble(key));
         
-            System.out.printf("Ingrese %s (true/false): ", opc[4]);
-            prime = in.nextBoolean();
-            teclado.setPrime(prime);
+            System.out.printf("Ingrese %s (s/n) >> s=Prime / n=Regular Product: ", opc[4]);
+            key = in.nextLine();
+            isVacio(key);
+            if(key.equalsIgnoreCase("s")){
+                keyBoolean = true;
+            }
+            teclado.setPrime(keyBoolean);
             
             System.out.printf("Ingrese %s: ", opc[5]);
-            color = in.next();
-            teclado.setColor(color);
+            key = in.nextLine();
+            isVacio(key);
+            teclado.setColor(key);
         
             System.out.printf("Ingrese %s: ", opc[6]);
-            teclas = in.nextInt();
-            teclado.setTeclas(teclas);
+            key = in.nextLine();
+            teclado.setTeclas(Integer.parseInt(key));
         
             System.out.printf("Ingrese %s: ", opc[7]);
-            conector = in.next();
-            teclado.setConector(conector);
+            key = in.nextLine();
+            isVacio(key);
+            teclado.setConector(key);
         
             System.out.println("\nDatos del Producto ingresado:");
             //teclado.mostrarInfo();
@@ -112,9 +135,10 @@ public class ConsolaTeclado{
             arrTeclado.add(teclado);
             //System.out.println("\n"+arrTeclado.toString());
         
-            System.out.print("\nDesea grabar la informacion en el Fichero CSV?:\nPresione S para grabar o pulse otra tecla para ingresar los valores nuevamente: ");
-            loop = in.next();
-            if(loop.equals("S") || loop.equals("s")){
+            System.out.print("\nDesea grabar la informacion en el Fichero CSV?:\nPresione S para grabar o presione otra tecla para ingresar los valores nuevamente: ");
+            key = in.nextLine();
+            isVacio(key);
+            if(key.equalsIgnoreCase("s")){
             //if(loop == "S" || loop == "s"){
                 try {
                     File file = new File(pathTeclado);

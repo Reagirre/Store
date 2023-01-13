@@ -13,7 +13,7 @@ public class MenuTeclado {
         while(!salir){
             try {
                 ConsolaTeclado.menuOpciones();
-                int key = in.nextInt();
+                int key = in.nextInt();      
                 // "Añadir","Buscar por ID","Buscar Elemento en CSV","Cambiar","Borrar","Leer Info CSV","Eliminar Todo","Volver"};
                 switch (key) {
                     case 1:
@@ -35,7 +35,8 @@ public class MenuTeclado {
                         ConsolaTeclado.leerCSV(pathTeclado);
                         break;
                     case 7:
-                        ConsolaTeclado.borrarCSV(pathTeclado);
+                        //ConsolaTeclado.borrarCSV(pathTeclado);
+                        System.out.println("Esta opcion esta desactivada");
                         break;
                     case 8:
                         Menu.limpiar();
