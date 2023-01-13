@@ -76,11 +76,25 @@ public class ConsolaTeclado{
         }
     }
 
+    static void is100(String input){
+        double dcto = Double.parseDouble(input);
+        if(dcto <0 || dcto>100){
+            throw new EmptyStackException();
+        }
+    }
+
+    static void isMenor0(String input){
+        double dcto = Double.parseDouble(input);
+        if(dcto <0){
+            throw new EmptyStackException();
+        }
+    }
+
 
     public static void addTeclados(String pathTeclado) throws IOException{
 
         try {
-            String key, loop;
+            String key;
             boolean keyBoolean = false;
 
             List<Teclado> arrTeclado = new ArrayList<Teclado>();
@@ -100,10 +114,12 @@ public class ConsolaTeclado{
         
             System.out.printf("Ingrese %s: ", opc[2]);
             key = in.nextLine();
+            isMenor0(key);
             teclado.setPrecio(Double.parseDouble(key));
         
             System.out.printf("Ingrese %s: ", opc[3]);
             key = in.nextLine();
+            is100(key);
             teclado.setDcto(Double.parseDouble(key));
         
             System.out.printf("Ingrese %s (s/n) >> s=Prime / n=Regular Product: ", opc[4]);
