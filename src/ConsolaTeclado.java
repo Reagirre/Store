@@ -60,16 +60,8 @@ public class ConsolaTeclado{
     
 }
 
-    static void isVacio(String input){
+    public static void isVacio(String input){
         if(input.isEmpty()||input.equalsIgnoreCase("t")||input.equalsIgnoreCase("g"))
-        {
-        System.out.println("No ha ingresado ningun valor");
-        throw new EmptyStackException();
-        }
-    }
-
-    static void isVacioInt(String input){
-        if(input.isEmpty())
         {
         System.out.println("No ha ingresado ningun valor");
         throw new EmptyStackException();
@@ -100,7 +92,7 @@ public class ConsolaTeclado{
             List<Teclado> arrTeclado = new ArrayList<Teclado>();
             Teclado teclado  = new Teclado();
             Scanner in = new Scanner(System.in);
-            String[] opc = {"Numero de id","Marca","Precio","Descuento","Prime","Color","Teclas","Conector"};
+            String[] opc = {"Numero de id","Marca","Precio","Descuento","tipo de Prime","Color","Numero de Teclas","Tipo de Conector"};
             
             System.out.printf("Ingrese %s [t=codigo de teclado]: t", opc[0]);
             key = "t"+in.nextLine();
@@ -151,7 +143,7 @@ public class ConsolaTeclado{
             arrTeclado.add(teclado);
             //System.out.println("\n"+arrTeclado.toString());
         
-            System.out.print("\nDesea grabar la informacion en el Fichero CSV?:\nPresione S para grabar o presione otra tecla para ingresar los valores nuevamente: ");
+            System.out.print("\nDesea grabar la informacion en el Fichero CSV?:\n- Presione S para grabar\n- Presione otra tecla para ingresar los valores nuevamente\n- Presione N para No Guardar y SALIR: ");
             key = in.nextLine();
             isVacio(key);
             if(key.equalsIgnoreCase("s")){
@@ -174,6 +166,9 @@ public class ConsolaTeclado{
                 } catch (Exception e) {
                 // TODO: handle exception
                 } 
+            }
+            else if(key.equalsIgnoreCase("n")){
+                Menu.limpiar();
             }else{
                 Menu.limpiar();
                 addTeclados(pathTeclado);

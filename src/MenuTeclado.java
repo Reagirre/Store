@@ -13,7 +13,9 @@ public class MenuTeclado {
         while(!salir){
             try {
                 ConsolaTeclado.menuOpciones();
-                int key = in.nextInt();      
+                String key2 = in.nextLine();
+                ConsolaTeclado.isVacio(key2);
+                int key = Integer.parseInt(key2);      
                 // "Añadir","Buscar por ID","Buscar Elemento en CSV","Cambiar","Borrar","Leer Info CSV","Eliminar Todo","Volver"};
                 switch (key) {
                     case 1:
@@ -52,6 +54,11 @@ public class MenuTeclado {
                 Menu.limpiar();
                 System.out.println("Debes insertar un número.\n");
                 in.next();
+            }
+            catch (Exception e) {
+                // System.out.printf("Error en el dato ingresado! Intentelo nuevamente...\n");
+                // System.err.printf("Error en el dato ingresado! Intentelo nuevamente...\n");
+                // TODO: handle exception
             }
         }       
     }
