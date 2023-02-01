@@ -1,5 +1,5 @@
 
-public abstract class Producto {
+public abstract class Producto implements Comparable<Producto> {
 
     // protected String id;
     // protected String marca;
@@ -104,5 +104,10 @@ public abstract class Producto {
     public abstract String toStringDatos();
     public abstract void toStringAbstract();
     public abstract String toStringAbstract(String idioma);
+
+    @Override
+    public int compareTo(Producto p){
+        return this.id.compareToIgnoreCase(p.getId());
+    }
 
 }
