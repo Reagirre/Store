@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -88,8 +89,11 @@ public class ConsolaTeclado {
             String key;
             boolean keyBoolean = false;
 
-            List<Teclado> arrTeclado = new ArrayList<Teclado>();
+            
+            ArrayList<Teclado> arrTeclado = new ArrayList<Teclado>();
             Teclado teclado = new Teclado();
+
+
             Scanner in = new Scanner(System.in);
             String[] opc = { "Numero de id", "Marca", "Precio", "Descuento", "tipo de Prime", "Color",
                     "Numero de Teclas", "Tipo de Conector" };
@@ -98,6 +102,8 @@ public class ConsolaTeclado {
             key = "t" + in.nextLine();
             isVacio(key);
             teclado.setId(key);
+            if(buscaPorIDAutomatico(pathTeclado, key)==false){
+            
 
             System.out.printf("Ingrese %s: ", opc[1]);
             key = in.nextLine();
@@ -141,7 +147,6 @@ public class ConsolaTeclado {
             System.out.println(teclado.toStringDatos());
 
             arrTeclado.add(teclado);
-            // System.out.println("\n"+arrTeclado.toString());
 
             System.out.print(
                     "\nDesea grabar la informacion en el Fichero CSV?:\n- Presione S para grabar\n- Presione otra tecla para ingresar los valores nuevamente\n- Presione N para No Guardar y SALIR: ");
@@ -169,10 +174,13 @@ public class ConsolaTeclado {
                 }
             } else if (key.equalsIgnoreCase("n")) {
                 Menu.limpiar();
+                
             } else {
                 Menu.limpiar();
                 addTeclados(pathTeclado);
             }
+        }
+        //addTeclados(pathTeclado);
 
         } catch (Exception e) {
             System.out.printf("Error en el dato ingresado! Intentelo nuevamente...\n");
@@ -204,6 +212,20 @@ public class ConsolaTeclado {
             System.out.println(e);
         } catch (Exception e) {
             // TODO: handle exception
+        }
+    }
+
+    public static void leerCSVOrdenado(String pathTeclado) throws FileNotFoundException {
+
+        File file = new File(pathTeclado);
+        Scanner inputFile = new Scanner(file);
+        ArrayList<Teclado> arrTeclados = new ArrayList<Teclado>();
+
+        try {
+            pasarObjectosCSVOrdenado(pathTeclado, arrTeclados, file, inputFile);
+            //buscaID(arrTeclados, pathTeclado);
+        } catch (Exception e) {
+            // System.out.printf("\nEste codigo no existe....\n");
         }
     }
 
@@ -513,6 +535,22 @@ public class ConsolaTeclado {
         }
     }
 
+
+    private static boolean buscaPorIDAutomatico(String pathTeclado, String key) throws FileNotFoundException {
+
+        File file = new File(pathTeclado);
+        Scanner inputFile = new Scanner(file);
+        ArrayList<Teclado> arrTeclados = new ArrayList<Teclado>();
+        boolean existeID = false;
+
+        try {
+            anadirObjetosCSV(pathTeclado, arrTeclados, file, inputFile);
+        } catch (Exception e) {
+            // System.out.printf("\nEste codigo no existe....\n");
+        }
+        return buscaIDAutomatico(arrTeclados, pathTeclado, key);
+    }
+
     private static void buscaCambiaActualiza(ArrayList arrTeclados, String pathTeclado, File file) {
 
         // BUSCA, Cambia Y Actualiza
@@ -687,7 +725,82 @@ public class ConsolaTeclado {
         }
     }
 
+
+    // private static void buscaIDAutomatico(ArrayList arrTeclados, String pathTeclado, String key) {
+    private static boolean buscaIDAutomatico(ArrayList arrTeclados, String pathTeclado, String key) {
+        boolean existeID = false;
+        try {
+            Teclado tecladoFind = new Teclado();
+            int i = 0;
+            
+            while (i < arrTeclados.size() && !((Producto) arrTeclados.get(i)).getId().equalsIgnoreCase(key)) {
+                i++;
+            }
+
+            if(!((Producto) arrTeclados.get(i)).getId().equalsIgnoreCase(key)){
+                // Aqui salta si el codigo no existe
+            }
+            else if (i < arrTeclados.size()) {
+                tecladoFind = (Teclado) arrTeclados.get(i);
+            }
+            System.out.println("Este codigo ya existe en el CSV:");
+            tecladoFind.mostrarInfo();
+            System.out.println("");
+            existeID = true;
+            //addTeclados(pathTeclado);
+        } catch (Exception e) {
+            // System.out.printf("\nEste codigo no existe....\n");
+        }
+        return existeID;
+    }
+
     //////// FUNCIONES PARA QUE FUNCIONEN INDEPENDIENTEMENTE
+
+    static void anadirObjetosCSV(String pathTeclado, ArrayList arrTeclados, File file, Scanner inputFile)
+            throws FileNotFoundException {
+        try {
+
+            String str;
+            String[] tokens;
+            //System.out.printf("\n>>Informacion del archivo: %s\n", pathTeclado);
+            while (inputFile.hasNext()) {
+                // for (int i =0;i<n;i++) {
+                str = inputFile.nextLine();
+                tokens = str.split(",");
+                Teclado teclado = new Teclado();
+                teclado.setId(tokens[0]);
+                teclado.setMarca(tokens[1]);
+                teclado.setPrecio(Double.parseDouble(tokens[2]));
+                teclado.setDcto(Double.parseDouble(tokens[3]));
+                String primeString = tokens[4];
+                Boolean prime;
+                if (primeString.equals("PRIME")) {
+                    prime = true;
+                } else {
+                    prime = false;
+                }
+                teclado.setPrime(prime);
+                teclado.setColor(tokens[5]);
+                teclado.setTeclas(Integer.parseInt(tokens[6]));
+                teclado.setConector(tokens[7]);
+                String envio = tokens[8];
+                Double pvp = Double.parseDouble(tokens[9]);
+                arrTeclados.add(teclado);
+
+            }
+
+            //Collections.sort(arrTeclados);
+
+            // for (int i = 0; i < arrTeclados.size(); i++) {
+            //     // System.out.printf("\n>> Item Nº: %d\n",i+1);
+            //     System.out.println(arrTeclados.get(i).toString());
+            // }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+
     private static void pasarObjectosCSVOrdenado(String pathTeclado, ArrayList arrTeclados, File file, Scanner inputFile)
             throws FileNotFoundException {
         try {

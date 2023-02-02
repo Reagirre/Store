@@ -1,4 +1,6 @@
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -9,6 +11,7 @@ public class MenuTeclado {
         //String pathReadTeclado = "lib/BDTeclado.csv";
         boolean salir = false;
         Scanner in = new Scanner(System.in);
+
 
         while(!salir){
             try {
@@ -34,7 +37,8 @@ public class MenuTeclado {
                         ConsolaTeclado.borraRegistro(pathTeclado);
                         break;
                     case 6:
-                        ConsolaTeclado.leerCSV(pathTeclado);
+                        ConsolaTeclado.leerCSVOrdenado(pathTeclado);
+                        // ConsolaTeclado.leerCSV(pathTeclado);
                         break;
                     case 7:
                         //ConsolaTeclado.borrarCSV(pathTeclado);
