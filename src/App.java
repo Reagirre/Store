@@ -12,7 +12,7 @@ public class App {
         Scanner in = new Scanner(System.in);
         boolean salir = false;
         Menu.limpiar();
-        System.out.println("ONGI ETORRI");
+        //System.out.println("ONGI ETORRI");
         while (!salir) {
             Menu.MenuInstrumentos();
             try {
@@ -29,7 +29,7 @@ public class App {
                     case 2:
                         // Menu.limpiar();
                         // ConsolaTeclado.buscarTeclados(pathWriteTeclado);
-                        System.out.print("Solo esta disponible los productos de TECLADOS\n");
+                        //System.out.print("Solo esta disponible los productos de TECLADOS\n");
                         // salir = true;
                         break;
                     case 3:
